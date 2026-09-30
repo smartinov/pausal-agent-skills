@@ -1,0 +1,24 @@
+{
+  "name": "pausal",
+  "version": "2026.9.0",
+  "description": "Back office paušalca: fakture, KPO knjiga, limiti, obaveze, test samostalnosti i naplata, uz propise sa izvorima.",
+  "author": {
+    "name": "Stefan Martinov",
+    "url": "https://github.com/smartinov"
+  },
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Paušal",
+    "shortDescription": "Back office paušalne agencije u Srbiji",
+    "longDescription": "Fakture, KPO knjiga, limiti prometa, mesečne i godišnje obaveze, test samostalnosti i naplata za paušalne preduzetnike u Srbiji. Svaka poreska tvrdnja se oslanja na proveren propis sa izvorom; neproverena se tako i označava.",
+    "developerName": "Stefan Martinov",
+    "category": "Productivity",
+    "capabilities": [
+      "Reusable skill instructions"
+    ],
+    "defaultPrompt": [
+      "Koristi pausal skill-ove za vođenje paušalne agencije."
+    ]
+  }
+}

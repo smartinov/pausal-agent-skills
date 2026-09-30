@@ -1,0 +1,27 @@
+{
+  "poslovno_ime": "PETAR PETROVIĆ PR PRIMER KODIRANJE NOVI SAD",
+  "naziv": "Primer",
+  "adresa": "Primerna 1",
+  "mesto": "21000 Novi Sad",
+  "pib": "100000000",
+  "mb": "60000000",
+  "sifra_delatnosti": "6201",
+  "osiguranje": "samostalan",
+  "datum_registracije": "2026-01-15",
+  "email": "kontakt@primer.invalid",
+  "telefon": "+381 60 000 0000",
+  "rok_placanja_dana": 30,
+  "racuni": [
+    {
+      "valuta": "RSD",
+      "broj": "000000000000000000",
+      "banka": "Primer banka"
+    },
+    {
+      "valuta": "EUR",
+      "iban": "RS00000000000000000000",
+      "swift": "PRIMRSBG",
+      "banka": "Primer banka"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="nacrt-id" content="{{NACRT_ID}}">
+<title>{{NASLOV}} {{BROJ}}</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 14mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #202326; font: 9.5pt/1.4 Helvetica, Arial, sans-serif; font-variant-numeric: tabular-nums; }
+  h1 { margin: 0; font-size: 22pt; letter-spacing: .02em; }
+  .muted { color: #60666b; }
+  .label { margin-bottom: 1.5mm; color: #60666b; font-size: 7.5pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  header { padding-bottom: 4mm; margin-bottom: 5mm; border-bottom: 1pt solid #202326; }
+  header .row > div:last-child { text-align: right; }
+  .name { font-weight: 700; font-size: 10pt; }
+  table { width: 100%; border-collapse: collapse; }
+  .meta td { padding: .8mm 0; vertical-align: top; }
+  .meta td:first-child { width: 58mm; color: #60666b; white-space: nowrap; }
+  .items { margin-top: 6mm; }
+  .items th { padding: 2mm 1.5mm; border-bottom: .75pt solid #202326; color: #50565b; font-size: 7.5pt; text-align: left; text-transform: uppercase; }
+  .items td { padding: 2mm 1.5mm; border-bottom: .5pt solid #d8dcdf; vertical-align: top; }
+  .items th:first-child, .items td:first-child { padding-left: 0; }
+  .items th:last-child, .items td:last-child { padding-right: 0; }
+  .num { text-align: right !important; white-space: nowrap; }
+  .totals { width: 80mm; margin: 3mm 0 0 auto; }
+  .totals td { padding: 1mm 0; white-space: nowrap; }
+  .totals td:first-child { color: #60666b; }
+  .totals .grand td { padding-top: 2mm; border-top: 1pt solid #202326; font-weight: 700; font-size: 12pt; }
+  .note { margin-top: 5mm; padding-top: 2.5mm; border-top: .5pt solid #d8dcdf; color: #50565b; font-size: 8.5pt; }
+  .note p { margin: 0 0 1.5mm; }
+  footer { margin-top: 8mm; font-size: 8pt; }
+</style>
+</head>
+<body>
+<header>
+  <div class="row">
+    <div>
+      <h1>{{NASLOV}}</h1>
+      <div class="muted">{{BROJ_LABELA}} {{BROJ}}</div>
+    </div>
+    <div>{{IZDAVALAC}}</div>
+  </div>
+</header>
+
+<div class="row">
+  <div>
+    <div class="label">{{KUPAC_LABELA}}</div>
+    {{KUPAC}}
+  </div>
+  <div>
+    <table class="meta">{{META}}</table>
+  </div>
+</div>
+
+<table class="items">
+  <thead>{{STAVKE_ZAGLAVLJE}}</thead>
+  <tbody>{{STAVKE}}</tbody>
+</table>
+
+<table class="totals">{{UKUPNO}}</table>
+
+<div class="note">
+  {{NAPOMENE}}
+  {{PLACANJE}}
+</div>
+
+<footer class="muted">{{PODNOZJE}}</footer>
+</body>
+</html>

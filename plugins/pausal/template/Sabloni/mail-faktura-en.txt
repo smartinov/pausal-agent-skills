@@ -1,0 +1,10 @@
+Subject: {{KLIJENT}} x {{AGENCIJA}} - Invoice {{BROJ}}
+
+Hello,
+
+please find invoice {{BROJ}} attached.
+
+Best regards,
+{{IME}}
+{{AGENCIJA}}
+{{TELEFON}}

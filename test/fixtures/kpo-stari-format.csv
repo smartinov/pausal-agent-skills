@@ -1,0 +1,4 @@
+rb;broj_fakture;datum_izdavanja;datum_prometa;klijent;opis;iznos_eur;kurs_nbs;prihod_usluge_rsd;ukupno_rsd;rok_placanja;datum_naplate;napomena
+1;2026-1;05.03.2026;28.02.2026;Primer GmbH;Razvoj softvera, februar;4000,00;117,1234;468493,60;468493,60;19.04.2026;15.04.2026;
+2;2026-2;04.04.2026;31.03.2026;Primer DOO Novi Sad;Konsultacije;;;120000,00;120000,00;19.05.2026;;"rok 45 dana; bez ugovora"
+3;2026-3;05.05.2026;30.04.2026;Primer GmbH;Razvoj softvera, april;1000,00;117,2000;117200,00;117200,00;19.06.2026;;"stornirano; pogrešan iznos"

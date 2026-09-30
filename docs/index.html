@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pausal Agent Skills</title>
+<meta name="description" content="Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbiji.">
+<style>
+  body { font: 17px/1.6 system-ui, sans-serif; max-width: 44rem; margin: 2rem auto; padding: 0 1rem; color: #1b1b1b; background: #fff; }
+  h1 { line-height: 1.2; }
+  code, pre { font-family: ui-monospace, monospace; background: #f3f3f3; }
+  pre { padding: .75rem; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid #ddd; vertical-align: top; }
+  .note { border-left: 4px solid #b35900; padding: .5rem 1rem; background: #fff6ec; }
+  a { color: #0645ad; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e8e8e8; background: #141414; }
+    code, pre { background: #262626; }
+    th, td { border-color: #333; }
+    .note { background: #2a1d10; }
+    a { color: #8ab4f8; }
+  }
+</style>
+</head>
+<body>
+<main>
+<h1>Pausal Agent Skills</h1>
+<p>Skill-ovi za <strong>Claude Code</strong> i <strong>Codex</strong> koji vode back office paušalne agencije u Srbiji: fakture, KPO knjigu, limite prometa, obaveze, klijente i naplatu. Agent radi u tvom lokalnom folderu; podaci ne napuštaju tvoj računar osim ako to sam ne uradiš.</p>
+<p class="note"><strong>Status:</strong> u izradi, još nije spremno za upotrebu.</p>
+
+<h2>Skill-ovi</h2>
+<table>
+<thead><tr><th scope="col">Skill</th><th scope="col">Šta radi</th></tr></thead>
+<tbody>
+<tr><td><code>/pausal:init</code></td><td>Pravi radni prostor agencije kroz kratak upitnik.</td></tr>
+<tr><td><code>/pausal:faktura</code></td><td>B2B faktura (RSD ili EUR), kurs NBS, KPO red, nezavisan pregled.</td></tr>
+<tr><td><code>/pausal:kpo</code></td><td>Kumulativ, limiti paušala i PDV-a, projekcija, udeo po klijentu.</td></tr>
+<tr><td><code>/pausal:klijent</code></td><td>Podaci klijenta, test samostalnosti, klauzule ugovora.</td></tr>
+<tr><td><code>/pausal:naplata</code></td><td>Izvod banke, uparivanje sa fakturama, devizni priliv.</td></tr>
+<tr><td><code>/pausal:obaveze</code></td><td>Rokovi, podsetnici, kalendar, prenos na lični račun.</td></tr>
+</tbody>
+</table>
+
+<h2>Propisi sa izvorima</h2>
+<p>Sve poreske činjenice žive u jednom fajlu, gde svaki red ima izvor, period primene i datum provere. Kad red nije proveren ili je istekao, skill kaže <strong>NEPROVERENO</strong> umesto da nagađa.</p>
+
+<h2>Instalacija</h2>
+<p>Claude Code:</p>
+<pre><code>claude plugin marketplace add smartinov/pausal-agent-skills
+claude plugin install pausal@pausal-agent-skills</code></pre>
+<p>Codex:</p>
+<pre><code>codex plugin marketplace add smartinov/pausal-agent-skills
+codex plugin add pausal@pausal-agent-skills</code></pre>
+<p>Preduslovi: Node.js (LTS) i Google Chrome. Zatim u praznom folderu pokreni <code>/pausal:init</code>.</p>
+
+<h2>Odricanje odgovornosti</h2>
+<p>Ovo nije poreski ni pravni savet. Propisi se menjaju; proveri sa knjigovođom pre odluke koja nosi novac ili rok. Softver se isporučuje bez garancije (MIT licenca).</p>
+<p><a href="https://github.com/smartinov/pausal-agent-skills">Izvorni kod na GitHub-u</a></p>
+</main>
+</body>
+</html>

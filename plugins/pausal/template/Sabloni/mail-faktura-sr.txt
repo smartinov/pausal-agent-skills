@@ -1,0 +1,10 @@
+Subject: {{KLIJENT}} x {{AGENCIJA}} - Faktura {{BROJ}}
+
+Poštovani,
+
+u prilogu je faktura {{BROJ}}.
+
+Srdačan pozdrav,
+{{IME}}
+{{AGENCIJA}}
+{{TELEFON}}

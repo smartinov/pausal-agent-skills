@@ -1,0 +1,20 @@
+{
+  "name": "pausal-agent-skills",
+  "interface": {
+    "displayName": "Pausal Agent Skills"
+  },
+  "plugins": [
+    {
+      "name": "pausal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pausal"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

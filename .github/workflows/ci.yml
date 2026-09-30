@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Testovi (e2e traži Chrome)
+        run: node --test
+        env:
+          PAUSAL_CHROME_OBAVEZAN: '1'
+      - name: Propisi i citati
+        run: node scripts/check.mjs
+      - name: Lični podaci
+        run: node scripts/pii.mjs
+      - name: Verzija
+        run: node scripts/verzija.mjs ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || '' }}
