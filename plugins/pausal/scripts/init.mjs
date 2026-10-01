@@ -36,7 +36,7 @@ export function proveriOdrediste(odrediste, plugin = PLUGIN) {
   const upozorenja = [];
   if (unutar(dest, koren)) return { ok: false, razlog: 'odredište je unutar plugin-a; izaberi folder van instalacije', upozorenja };
   for (const d of preci(dest)) {
-    if (existsSync(join(d, '.claude-plugin', 'plugin.json')) || existsSync(join(d, '.codex-plugin', 'plugin.json')) || existsSync(join(d, '.claude-plugin', 'marketplace.json'))) {
+    if (existsSync(join(d, '.claude-plugin', 'plugin.json')) || existsSync(join(d, '.codex-plugin')) || existsSync(join(d, '.claude-plugin', 'marketplace.json'))) {
       return { ok: false, razlog: `odredište je unutar plugin-a ili marketplace repoa (${d}); lični podaci ne smeju tamo`, upozorenja };
     }
     if (existsSync(join(d, '.git'))) upozorenja.push(`odredište je u git repou (${d}); repo mora biti privatan`);

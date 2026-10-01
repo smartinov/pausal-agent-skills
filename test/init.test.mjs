@@ -20,6 +20,9 @@ test('odbija folder unutar plugin-a, repoa ili instalacije, pre bilo kakvog upis
   mkdirSync(join(kes, '.claude-plugin'), { recursive: true });
   writeFileSync(join(kes, '.claude-plugin', 'plugin.json'), '{"name":"pausal"}');
   assert.equal(proveriOdrediste(join(kes, 'radni'), kes).ok, false);
+  const codex = join(tmp(), 'codex-plugin');
+  mkdirSync(join(codex, '.codex-plugin'), { recursive: true });
+  assert.equal(proveriOdrediste(join(codex, 'radni'), plugin).ok, false);
 });
 
 test('odbija neprazan folder, prihvata prazan ili nepostojeći, upozorava na git', () => {
