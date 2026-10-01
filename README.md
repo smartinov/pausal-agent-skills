@@ -1,5 +1,7 @@
 # Pausal Agent Skills
 
+<img src="plugins/pausal/assets/icon.png" alt="Paušal project icon" width="128" height="128">
+
 > **English:** Agent skills for Claude Code and Codex that run the back office of a Serbian flat-tax sole proprietorship (*paušalni preduzetnik*): invoices, the KPO ledger, turnover limits, tax deadlines, client independence tests, and payment matching. Every tax fact comes from one sourced, dated reference file. Content is in Serbian. Not tax or legal advice.
 
 Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbiji. Agent radi u tvom lokalnom folderu, a pravila dolaze iz plugin-a.
