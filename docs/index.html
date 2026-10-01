@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pausal Agent Skills</title>
 <meta name="description" content="Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbiji.">
+<link rel="icon" href="icon.png">
 <style>
+  header { display: flex; align-items: center; gap: 1rem; }
+  header img { border-radius: 20%; }
   body { font: 17px/1.6 system-ui, sans-serif; max-width: 44rem; margin: 2rem auto; padding: 0 1rem; color: #1b1b1b; background: #fff; }
   h1 { line-height: 1.2; }
   code, pre { font-family: ui-monospace, monospace; background: #f3f3f3; }
@@ -25,25 +28,48 @@
 </head>
 <body>
 <main>
+<header>
+<img src="icon.png" alt="" width="96" height="96">
 <h1>Pausal Agent Skills</h1>
+</header>
 <p>Skill-ovi za <strong>Claude Code</strong> i <strong>Codex</strong> koji vode back office paušalne agencije u Srbiji: fakture, KPO knjigu, limite prometa, obaveze, klijente i naplatu. Agent radi u tvom lokalnom folderu; podaci ne napuštaju tvoj računar osim ako to sam ne uradiš.</p>
 <p class="note"><strong>Status:</strong> u izradi, još nije spremno za upotrebu.</p>
 
-<h2>Skill-ovi</h2>
+<h2>Šta svaki skill radi</h2>
+<p>Skill pokreneš komandom ili prosto kažeš agentu šta ti treba, npr. „izdaj fakturu“.</p>
 <table>
 <thead><tr><th scope="col">Skill</th><th scope="col">Šta radi</th></tr></thead>
 <tbody>
-<tr><td><code>/pausal:init</code></td><td>Pravi radni prostor agencije kroz kratak upitnik.</td></tr>
-<tr><td><code>/pausal:faktura</code></td><td>B2B faktura (RSD ili EUR), kurs NBS, KPO red, nezavisan pregled.</td></tr>
-<tr><td><code>/pausal:kpo</code></td><td>Kumulativ, limiti paušala i PDV-a, projekcija, udeo po klijentu.</td></tr>
-<tr><td><code>/pausal:klijent</code></td><td>Podaci klijenta, test samostalnosti, klauzule ugovora.</td></tr>
-<tr><td><code>/pausal:naplata</code></td><td>Izvod banke, uparivanje sa fakturama, devizni priliv.</td></tr>
-<tr><td><code>/pausal:obaveze</code></td><td>Rokovi, podsetnici, kalendar, prenos na lični račun.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/init/SKILL.md"><code>/pausal:init</code></a></td><td>Prvi korak. Pravi folder tvoje agencije i kroz kratak upitnik upisuje osnovne podatke (ime, PIB, adresa, račun). Može da prenese i KPO koji si već vodio.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/faktura/SKILL.md"><code>/pausal:faktura</code></a></td><td>Pravi fakturu firmi u dinarima ili evrima kao PDF, sam uzima srednji kurs NBS i upisuje je u KPO. Pre slanja fakturu proverava drugi, nezavisan pregled. Zna i storno i ispravku.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/kpo/SKILL.md"><code>/pausal:kpo</code></a></td><td>Kaže koliko si fakturisao, koliko si blizu limita za paušal (6 miliona) i PDV (8 miliona) i gde ćeš biti do kraja godine. Izvozi KPO za štampu ili knjigovođu.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/klijent/SKILL.md"><code>/pausal:klijent</code></a></td><td>Čuva podatke klijenta za fakture, prolazi sa tobom test samostalnosti (9 pitanja) i čita ugovor da nađe rizične klauzule.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/naplata/SKILL.md"><code>/pausal:naplata</code></a></td><td>Čita izvod iz banke i predlaže koja uplata zatvara koju fakturu. Ništa ne upisuje dok ne potvrdiš. Pomaže i oko deviznog priliva.</td></tr>
+<tr><td><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/skills/obaveze/SKILL.md"><code>/pausal:obaveze</code></a></td><td>Šta i do kada plaćaš (porez, doprinosi, godišnje prijave), sa šiframa plaćanja. Pravi kalendar sa podsetnicima i kaže koliko smeš da prebaciš sebi na lični račun.</td></tr>
 </tbody>
 </table>
 
-<h2>Propisi sa izvorima</h2>
-<p>Sve poreske činjenice žive u jednom fajlu, gde svaki red ima izvor, period primene i datum provere. Kad red nije proveren ili je istekao, skill kaže <strong>NEPROVERENO</strong> umesto da nagađa.</p>
+<h2>Odakle dolaze pravila</h2>
+<p>Agent ne izmišlja poreska pravila. Sve činjenice (limiti, stope, rokovi, šifre plaćanja) stoje u jednom fajlu, <a href="https://github.com/smartinov/pausal-agent-skills/blob/main/plugins/pausal/reference/propisi.md"><code>propisi.md</code></a>, i svaki red navodi tačan zakon i član, link ka izvoru, od kada važi i kada je poslednji put proveren. Kad red nije proveren ili je provera zastarela, skill kaže <strong>NEPROVERENO</strong> umesto da nagađa.</p>
+<p>Izvori su zvanični sajtovi i prečišćeni tekstovi propisa:</p>
+<ul>
+<li><a href="https://www.purs.gov.rs">Poreska uprava</a></li>
+<li><a href="https://www.mfin.gov.rs">Ministarstvo finansija</a></li>
+<li><a href="https://www.nbs.rs">Narodna banka Srbije</a> (srednji kurs)</li>
+<li><a href="https://www.trezor.gov.rs">Uprava za trezor</a></li>
+<li><a href="https://www.pio.rs">PIO fond</a></li>
+<li><a href="https://reg.pravno-informacioni-sistem.rs">Pravno-informacioni sistem</a></li>
+<li><a href="https://www.paragraf.rs">Paragraf</a> (prečišćeni tekstovi zakona)</li>
+</ul>
+
+<h2>Izvorni kod</h2>
+<p>Sve je otvoreno na <a href="https://github.com/smartinov/pausal-agent-skills">GitHub-u</a>:</p>
+<ul>
+<li><a href="https://github.com/smartinov/pausal-agent-skills/tree/main/plugins/pausal/skills">skills/</a>: uputstva koja agent prati, korak po korak;</li>
+<li><a href="https://github.com/smartinov/pausal-agent-skills/tree/main/plugins/pausal/scripts">scripts/</a>: računica, kurs, broj fakture i upis u KPO; ovo radi kod, ne agent;</li>
+<li><a href="https://github.com/smartinov/pausal-agent-skills/tree/main/plugins/pausal/template">template/</a>: početni sadržaj foldera agencije;</li>
+<li><a href="https://github.com/smartinov/pausal-agent-skills/blob/main/CHANGELOG.md">CHANGELOG.md</a>: šta se menjalo, uključujući izmene propisa.</li>
+</ul>
 
 <h2>Instalacija</h2>
 <p>Claude Code:</p>
@@ -56,7 +82,6 @@ codex plugin add pausal@pausal-agent-skills</code></pre>
 
 <h2>Odricanje odgovornosti</h2>
 <p>Ovo nije poreski ni pravni savet. Propisi se menjaju; proveri sa knjigovođom pre odluke koja nosi novac ili rok. Softver se isporučuje bez garancije (MIT licenca).</p>
-<p><a href="https://github.com/smartinov/pausal-agent-skills">Izvorni kod na GitHub-u</a></p>
 </main>
 </body>
 </html>
