@@ -1,8 +1,7 @@
 {
   "name": "pausal",
-  "version": "2026.10.0",
+  "version": "2026.10.1",
   "description": "Back office paušalca: fakture, KPO knjiga, limiti, obaveze, test samostalnosti i naplata, uz propise sa izvorima.",
   "author": { "name": "Stefan Martinov", "url": "https://github.com/smartinov" },
-  "license": "MIT",
-  "icon": "./.claude-plugin/icon.png"
+  "license": "MIT"
 }
