@@ -30,6 +30,8 @@ Sve poreske i knjigovodstvene činjenice (limiti, stope, rokovi, šifre plaćanj
 
 ## Instalacija
 
+Plugin je objavljen u Claude direktorijumu plugin-a (Claude Code, Cowork i Claude aplikacije): potraži „Pausal" i instaliraj ga odatle, ili komandama ispod.
+
 Claude Code:
 
 ```bash
