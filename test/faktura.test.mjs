@@ -142,6 +142,26 @@ test('devizna faktura traži devizni račun; negativna cena ide preko storna', (
   assert.match(proveriNacrt({ ...nacrt(), stavke: [{ opis: 'x', kolicina: '1', cena: '-5,00' }] }).join(' '), /pozitivne/);
 });
 
+test('valutna klauzula: cena u EUR, plaćanje u RSD na dinarski račun, KPO u EUR sa kursom', () => {
+  const n = { ...nacrt(), placanje: 'RSD', jezik: 'sr' };
+  assert.deepEqual(proveriNacrt(n), []);
+  assert.match(proveriNacrt({ ...n, placanje: 'USD' }).join(' '), /placanje/);
+  assert.match(proveriNacrt({ ...n, valuta: 'RSD', kurs: undefined, kursna_lista: undefined }).join(' '), /placanje/);
+  const html = renderuj(readFileSync(sablon, 'utf8'), n, agencija);
+  assert.ok(html.includes('Ukupno za plaćanje RSD</td><td class="num">481.908,26'));
+  assert.ok(html.includes('Valutna klauzula'));
+  assert.ok(html.includes(agencija.racuni[0].broj));
+  assert.ok(!html.includes(agencija.racuni[1].iban));
+  const ws = radniProstor();
+  writeFileSync(join(ws, 'agencija.json'), JSON.stringify({ ...agencija, racuni: agencija.racuni.filter((r) => r.valuta === 'RSD') }));
+  napraviNacrt(ws, n, { pdf: lazniPdf });
+  finalizujNacrt(ws, n);
+  const [red] = ucitaj(join(ws, 'Finansije', 'KPO', 'kpo-2026.csv'));
+  assert.equal(red.valuta, 'EUR');
+  assert.equal(red.ukupno_rsd, '481908.26');
+  assert.match(red.napomena, /RSD/);
+});
+
 test('nov radni prostor iz template-a nema unapred donetu odluku o kursu', async () => {
   const { napravi } = await import('../plugins/pausal/scripts/init.mjs');
   const ws = join(mkdtempSync(join(tmpdir(), 'nov ')), 'agencija');

@@ -8,7 +8,7 @@ import { basename, dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PLUGIN = fileURLToPath(new URL('../', import.meta.url));
-const FOLDERI = ['Finansije/Fakture', 'Finansije/KPO', 'Klijenti', 'Banka/Izvodi', 'Poreska'];
+const FOLDERI = ['Finansije/Fakture', 'Finansije/KPO', 'Klijenti', 'Banka/Izvodi', 'Poreska', 'Registracija'];
 const PRAZNA_AGENCIJA = {
   poslovno_ime: '', naziv: '', adresa: '', mesto: '', pib: '', mb: '', sifra_delatnosti: '',
   osiguranje: '', datum_registracije: '', email: '', telefon: '', rok_placanja_dana: 30,

@@ -41,7 +41,7 @@ test('napravi kopira template, pravi foldere i .gitignore, a odbijen init ne pi≈
   const d = join(tmp(), 'moja agencija');
   const r = napravi(d, plugin);
   assert.equal(r.ok, true);
-  for (const p of ['AGENTS.md', 'agencija.json', '.gitignore', 'Memory/log.md', 'Sabloni/faktura.html', 'Finansije/KPO', 'Finansije/Fakture', 'Klijenti', 'Banka/Izvodi', 'Poreska']) {
+  for (const p of ['AGENTS.md', 'agencija.json', '.gitignore', 'Memory/log.md', 'Sabloni/faktura.html', 'Finansije/KPO', 'Finansije/Fakture', 'Klijenti', 'Banka/Izvodi', 'Poreska', 'Registracija']) {
     assert.ok(existsSync(join(d, p)), p);
   }
   assert.ok(!existsSync(join(d, 'gitignore')));
