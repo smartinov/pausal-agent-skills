@@ -42,6 +42,7 @@ export function proveriNacrt(n) {
   if (!['sr', 'sr-en'].includes(n.jezik)) g.push('jezik mora biti sr ili sr-en');
   if (!/^[A-Z]{3}$/.test(n.valuta ?? '')) g.push('valuta mora biti troslovna oznaka (RSD, EUR)');
   if (n.valuta && n.valuta !== 'RSD' && (!/^\d+(\.\d{1,4})?$/.test(n.kurs ?? '') || !n.kursna_lista)) g.push('devizna faktura traži kurs (npr. 117.5386) i broj kursne liste');
+  if (n.placanje !== undefined && !(n.placanje === 'RSD' && n.valuta !== 'RSD')) g.push('placanje može biti samo RSD, uz cenu u stranoj valuti (valutna klauzula)');
   const k = n.kupac ?? {};
   if (k.tip === 'b2c') g.push('kupac je fizičko lice: potreban je fiskalni račun (propis:fiskalizacija.b2c); v1 ne izdaje B2C fakture');
   else if (k.tip === 'b2g') g.push('kupac je javni sektor: faktura ide preko SEF-a (propis:sef.b2g); v1 ne izdaje B2G fakture');
@@ -77,7 +78,9 @@ export function renderuj(sablon, n, a) {
   const { stavke, ukupno, ukupnoRsd } = izracunaj(n);
   const k = n.kupac;
   const rsdRacun = a.racuni.find((r) => r.valuta === 'RSD');
-  const devizni = a.racuni.find((r) => r.valuta === n.valuta && n.valuta !== 'RSD');
+  const klauzula = n.placanje === 'RSD';
+  const devizni = !klauzula && a.racuni.find((r) => r.valuta === n.valuta && n.valuta !== 'RSD');
+  const kurs = n.kurs?.replace('.', ',');
   const blokovi = {
     NACRT_ID: nacrtId(n),
     NASLOV: L('Faktura', 'Invoice'),
@@ -107,14 +110,21 @@ export function renderuj(sablon, n, a) {
     STAVKE_ZAGLAVLJE: `<tr><th>${L('Opis', 'Description')}</th><th class="num">${L('Kol.', 'Qty')}</th><th>${L('Jed.', 'Unit')}</th><th class="num">${L('Cena', 'Price')} (${n.valuta})</th><th class="num">${L('Iznos', 'Amount')} (${n.valuta})</th></tr>`,
     STAVKE: stavke.map((s) => `<tr><td>${esc(s.opis)}</td><td class="num">${formatRsd(uPare(s.kolicina)).replace(/,00$/, '')}</td><td>${esc(s.jedinica)}</td><td class="num">${formatRsd(uPare(s.cena))}</td><td class="num">${formatRsd(s.iznos)}</td></tr>`).join(''),
     UKUPNO: [
-      n.valuta !== 'RSD' ? `<tr><td>${L('Srednji kurs NBS', 'NBS middle rate')} (${L('lista', 'list')} ${esc(n.kursna_lista)})</td><td class="num">${esc(n.kurs.replace('.', ','))}</td></tr>` : '',
-      n.valuta !== 'RSD' ? `<tr><td>${L('Protivvrednost', 'Equivalent')} RSD</td><td class="num">${formatRsd(ukupnoRsd)}</td></tr>` : '',
-      `<tr class="grand"><td>${L('Ukupno za plaćanje', 'Total due')} ${n.valuta}</td><td class="num">${formatRsd(ukupno)}</td></tr>`,
+      klauzula ? `<tr><td>${L('Ukupno', 'Total')} ${n.valuta}</td><td class="num">${formatRsd(ukupno)}</td></tr>` : '',
+      n.valuta !== 'RSD' ? `<tr><td>${L('Srednji kurs NBS', 'NBS middle rate')} (${L('lista', 'list')} ${esc(n.kursna_lista)})</td><td class="num">${esc(kurs)}</td></tr>` : '',
+      n.valuta !== 'RSD' && !klauzula ? `<tr><td>${L('Protivvrednost', 'Equivalent')} RSD</td><td class="num">${formatRsd(ukupnoRsd)}</td></tr>` : '',
+      `<tr class="grand"><td>${L('Ukupno za plaćanje', 'Total due')} ${klauzula ? 'RSD' : n.valuta}</td><td class="num">${formatRsd(klauzula ? ukupnoRsd : ukupno)}</td></tr>`,
     ].join(''),
     NAPOMENE: (n.napomene ?? []).map((t) => `<p>${esc(t)}</p>`).join(''),
-    PLACANJE: devizni
-      ? `<p><strong>${L('Plaćanje', 'Payment')}:</strong> IBAN ${esc(devizni.iban)} · SWIFT ${esc(devizni.swift)} · ${esc(devizni.banka)}</p>`
-      : `<p><strong>${L('Plaćanje na račun', 'Pay to account')}:</strong> ${esc(rsdRacun?.broj)} · ${esc(rsdRacun?.banka)}</p>`,
+    PLACANJE: [
+      klauzula ? `<p><strong>${L('Valutna klauzula', 'Currency clause')}:</strong> ${esc(L(
+        `cena je iskazana u ${n.valuta}; plaćanje u RSD po srednjem kursu NBS, 1 ${n.valuta} = ${kurs} RSD (kursna lista br. ${n.kursna_lista}).`,
+        `prices are stated in ${n.valuta}; payment in RSD at the NBS middle rate, 1 ${n.valuta} = ${kurs} RSD (rate list no. ${n.kursna_lista}).`,
+      ))}</p>` : '',
+      devizni
+        ? `<p><strong>${L('Plaćanje', 'Payment')}:</strong> IBAN ${esc(devizni.iban)} · SWIFT ${esc(devizni.swift)} · ${esc(devizni.banka)}</p>`
+        : `<p><strong>${L('Plaćanje na račun', 'Pay to account')}:</strong> ${esc(rsdRacun?.broj)} · ${esc(rsdRacun?.banka)}</p>`,
+    ].join(''),
     PODNOZJE: esc([a.naziv, a.email, a.telefon].filter(Boolean).join(' · ')),
   };
   return sablon.replace(/\{\{([A-Z_]+)\}\}/g, (m, kljuc) => {
@@ -165,7 +175,7 @@ function agencija(ws, n) {
   const a = JSON.parse(readFileSync(join(ws, 'agencija.json'), 'utf8'));
   const { greske, upozorenja } = proveriAgenciju(a);
   if (greske.length) throw new Error(`agencija.json: ${greske.join('; ')}`);
-  if (n.valuta !== 'RSD' && !a.racuni.some((r) => r.valuta === n.valuta)) throw new Error(`agencija.json nema ${n.valuta} račun; kupac ne bi imao gde da plati`);
+  if (n.valuta !== 'RSD' && n.placanje !== 'RSD' && !a.racuni.some((r) => r.valuta === n.valuta)) throw new Error(`agencija.json nema ${n.valuta} račun; kupac ne bi imao gde da plati`);
   return { a, upozorenja };
 }
 
@@ -235,7 +245,7 @@ export function finalizujNacrt(ws, n, { propisi } = {}) {
     klijent: n.klijent, opis: stavke.map((s) => s.opis).join('; '),
     valuta: n.valuta, iznos_valuta: izPara(ukupno), kurs_nbs: n.kurs ?? '', kursna_lista: n.kursna_lista ?? '',
     prihod_proizvodi_rsd: izPara(proizvodiRsd), prihod_usluge_rsd: izPara(ukupnoRsd - proizvodiRsd), ukupno_rsd: izPara(ukupnoRsd),
-    rok_placanja: n.rok_placanja, datum_naplate: '', status: 'izdata', nacrt_id: id, napomena: '',
+    rok_placanja: n.rok_placanja, datum_naplate: '', status: 'izdata', nacrt_id: id, napomena: n.placanje === 'RSD' ? 'valutna klauzula, plaćanje u RSD' : '',
   };
   mkdirSync(join(ws, 'Finansije', 'KPO'), { recursive: true });
   return finalizuj(p.kpo, red, () => {

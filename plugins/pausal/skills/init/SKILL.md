@@ -1,6 +1,6 @@
 ---
 name: init
-description: 'Postavlja radni prostor paušalne agencije (AGENTS.md, agencija.json, Memory/, Finansije/, Sabloni/) kroz kratak upitnik. Koristiti kad korisnik kaže „napravi radni prostor", „nova paušalna agencija", „pausal init" ili počinje da vodi paušal sa agentom.'
+description: 'Postavlja radni prostor paušalne agencije (AGENTS.md, agencija.json, Memory/, Finansije/, Sabloni/, Registracija/) kroz kratak upitnik. Koristiti kad korisnik kaže „napravi radni prostor", „nova paušalna agencija", „pausal init" ili počinje da vodi paušal sa agentom.'
 ---
 
 # Init radnog prostora

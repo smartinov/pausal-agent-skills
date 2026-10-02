@@ -40,7 +40,7 @@ Ako KPO za tekuću godinu ne postoji, pitaj da li je ovo prva faktura agencije o
     "stavke":[{"opis":"","kolicina":"160","jedinica":"h","cena":"25,00","vrsta":"usluga"}],
     "napomene":["Obveznik nije u sistemu PDV-a."]}
    ```
-   Za RSD fakturu izostavi `kurs` i `kursna_lista`; `jezik` je `sr` ili `sr-en`; `vrsta` je `usluga` ili `proizvod`. Zatim:
+   Za RSD fakturu izostavi `kurs` i `kursna_lista`; `jezik` je `sr` ili `sr-en`; `vrsta` je `usluga` ili `proizvod`. Domaći kupac sa cenom u EUR koji plaća u dinarima (valutna klauzula): `"valuta":"EUR"` sa kursom i `"placanje":"RSD"`; faktura tada traži uplatu u RSD na dinarski račun. Zatim:
    ```bash
    node "$S/faktura.mjs" nacrt "$WS" "$WS/Finansije/Fakture/nacrti/nacrt.json"
    ```

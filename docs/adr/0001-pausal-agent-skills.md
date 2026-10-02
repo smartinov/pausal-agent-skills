@@ -67,6 +67,7 @@ Istorijske i buduće verzije istog ID-ja su posebni redovi. U v1 ulaze samo redo
 
 - **Obim v1:** samo B2B (pravno lice ili preduzetnik). Ako je kupac fizičko lice ili je fiskalizacija nejasna, skill staje i upućuje na fiskalni uređaj ili knjigovođu. SEF je van v1; kad je kupac javni sektor, skill staje sa upozorenjem.
 - **Izrada:** generički HTML šablon (RSD, EUR, dvojezično) → PDF preko headless Chrome-a, jedna A4 strana.
+- **Valutna klauzula:** domaći kupac sa cenom u EUR plaća u RSD po srednjem kursu NBS na dinarski račun. KPO red je isti kao za deviznu fakturu (valuta, iznos, kurs), a napomena beleži plaćanje u RSD.
 - **Kurs:** srednji kurs NBS sa `https://webappcenter.nbs.rs/ExchangeRateWebApp/ExchangeRate/IndexByDate?isSearchExecuted=true&Date=DD.MM.YYYY&ExchangeRateListTypeID=3` (HTML proveren 2026-09-30; CSV/XML varijanta preko parametra `Format` proverava se pri implementaciji). Uz kurs se čuva broj kursne liste. Za neradni dan uzima se poslednji objavljeni kurs, a koji datum važi određuje red u `propisi.md`. Ako dohvatanje ne uspe, korisnik kurs unosi ručno. Neslužbeni izvori se ne koriste.
 - **Životni ciklus:**
   - *Nacrt:* nosi predloženi sledeći broj i ne upisuje ništa u KPO.

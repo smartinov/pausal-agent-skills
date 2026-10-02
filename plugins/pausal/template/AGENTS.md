@@ -45,6 +45,7 @@ Finansije/KPO/      kpo-{GOD}.csv (KPO knjiga)
 Klijenti/{slug}/    ugovor, test samostalnosti
 Banka/Izvodi/       izvodi banke
 Poreska/            rešenja PU, potvrde uplata
+Registracija/       rešenje APR, potvrda o PIB-u, prijava
 ```
 
 Imena fajlova: `{YYMMDD}-opis.ext`, mala slova, crtice, bez razmaka i dijakritika (osim faktura, koje nose broj).
