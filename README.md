@@ -13,7 +13,7 @@ Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbi
 | Skill | Šta radi |
 |---|---|
 | `/pausal:init` | Pravi radni prostor agencije kroz kratak upitnik. |
-| `/pausal:faktura` | B2B faktura (RSD ili EUR), kurs NBS, KPO red, nezavisan pregled, storno i ispravka. |
+| `/pausal:faktura` | B2B faktura (RSD, EUR ili valutna klauzula), kurs NBS, KPO red, nezavisan pregled, storno i ispravka. |
 | `/pausal:kpo` | Kumulativ, limiti paušala i PDV-a, projekcija, udeo po klijentu. |
 | `/pausal:klijent` | Podaci klijenta, test samostalnosti, klauzule ugovora. |
 | `/pausal:naplata` | Izvod banke → uparivanje sa fakturama, devizni priliv. |
@@ -49,6 +49,8 @@ Zatim u praznom folderu (van ovog repoa) pokreni `/pausal:init`. Radni prostor s
 ## Doprinos
 
 Izmene u `propisi.md` prihvataju se samo uz link na primarni izvor (propis, Službeni glasnik, purs.gov.rs, apr.gov.rs, nbs.rs). Nikad ne commit-uj stvarne PIB, JMBG ni brojeve računa; primeri koriste izmišljenu agenciju.
+
+Svaka izmena skill-a, skripte ili šablona proverava da li sajt (`docs/index.html`) i tabela skill-ova u ovom README-u i dalje tačno opisuju plugin; ako ne, ažuriraju se u istom PR-u.
 
 ## Odricanje odgovornosti
 
