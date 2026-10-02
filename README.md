@@ -6,8 +6,6 @@
 
 Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbiji. Agent radi u tvom lokalnom folderu, a pravila dolaze iz plugin-a.
 
-**Status: u izradi, još nije spremno za upotrebu.**
-
 ## Skill-ovi
 
 | Skill | Šta radi |
