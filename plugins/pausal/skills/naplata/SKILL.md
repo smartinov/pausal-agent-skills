@@ -12,7 +12,7 @@ Radni prostor je `WS`, skripte su u `../../scripts/` u odnosu na ovaj fajl (`S`)
 1. Pročitaj izvod: PDF kroz `pdftotext -layout` ako postoji, inače pročitaj PDF direktno; CSV iz e-bankinga pročitaj kao tabelu. Proveri da je račun sa izvoda račun agencije iz `agencija.json`; ako nije, stani.
 2. Izdvoji prilive: datum, iznos, valuta, uplatilac, poziv na broj, svrha.
 3. Otvorene fakture su KPO redovi sa statusom `izdata` i praznim `datum_naplate`, u `$WS/Finansije/KPO/kpo-<godina>.csv` (i prethodnoj godini).
-4. Za svaki priliv predloži uparivanje po redu: poziv na broj = broj fakture, zatim iznos i uplatilac. Prikaži tabelu predloga i razlike (manje plaćeno, više plaćeno, naknada banke). **Ništa ne upisuj dok korisnik ne potvrdi svako uparivanje.**
+4. Za svaki priliv predloži uparivanje po redu: poziv na broj = broj fakture, zatim iznos i uplatilac. Dinarski priliv poredi sa `ukupno_rsd`; devizni sa `iznos_valuta` (red sa valutnom klauzulom ima valutu EUR, a plaća se u RSD). Prikaži tabelu predloga i razlike (manje plaćeno, više plaćeno, naknada banke). **Ništa ne upisuj dok korisnik ne potvrdi svako uparivanje.**
 5. Posle potvrde:
    ```bash
    node "$S/kpo.mjs" naplata "$WS/Finansije/KPO/kpo-<godina>.csv" <broj> <YYYY-MM-DD>
