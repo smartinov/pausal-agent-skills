@@ -6,8 +6,6 @@
 
 Skill-ovi za Claude Code i Codex koji vode back office paušalne agencije u Srbiji. Agent radi u tvom lokalnom folderu, a pravila dolaze iz plugin-a.
 
-**Status: u izradi, još nije spremno za upotrebu.**
-
 ## Skill-ovi
 
 | Skill | Šta radi |
@@ -29,6 +27,8 @@ Sve poreske i knjigovodstvene činjenice (limiti, stope, rokovi, šifre plaćanj
 - Claude Code čita `AGENTS.md` radnog prostora od verzije 2.1.277, i to samo ako ni u radnom prostoru ni u folderima iznad njega nema `CLAUDE.md`.
 
 ## Instalacija
+
+Plugin je objavljen u Claude direktorijumu plugin-a (Claude Code, Cowork i Claude aplikacije): potraži „Pausal" i instaliraj ga odatle, ili komandama ispod.
 
 Claude Code:
 
