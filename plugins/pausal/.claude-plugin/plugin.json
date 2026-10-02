@@ -1,7 +1,15 @@
 {
   "name": "pausal",
-  "version": "2026.10.2",
+  "displayName": "Paušal",
+  "version": "2026.10.3",
   "description": "Back office paušalca: fakture, KPO knjiga, limiti, obaveze, test samostalnosti i naplata, uz propise sa izvorima.",
   "author": { "name": "Stefan Martinov", "url": "https://github.com/smartinov" },
-  "license": "MIT"
+  "homepage": "https://smartinov.github.io/pausal-agent-skills/",
+  "repository": "https://github.com/smartinov/pausal-agent-skills",
+  "documentationUrl": "https://github.com/smartinov/pausal-agent-skills#readme",
+  "supportUrl": "https://github.com/smartinov/pausal-agent-skills/issues",
+  "privacyPolicyUrl": "https://smartinov.github.io/pausal-agent-skills/#privatnost",
+  "termsOfServiceUrl": "https://smartinov.github.io/pausal-agent-skills/#uslovi",
+  "license": "MIT",
+  "keywords": ["pausal", "srbija", "preduzetnik", "faktura", "kpo", "porez"]
 }
