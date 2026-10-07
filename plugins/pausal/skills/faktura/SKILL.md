@@ -60,7 +60,7 @@ Ako KPO za tekuću godinu ne postoji, pitaj da li je ovo prva faktura agencije o
    - `Memory/memory.md`: poslednji broj fakture;
    - `Memory/log.md`: `YYYY-MM-DD — Faktura <broj>, <klijent>, <iznos>`;
    - `/pausal:kpo` za stanje limita posle ove fakture.
-9. **Mejl.** Popuni `Sabloni/mail-faktura-sr.txt` ili `-en.txt` i pokaži tekst. Korisnik šalje sam; ti nikad ne šalješ.
+9. **Mejl.** Popuni šablon iz sekcije „Mejl uz fakturu" u `AGENTS.md` radnog prostora i pokaži tekst. Korisnik šalje sam; ti nikad ne šalješ.
 
 ## Storno i ispravka
 

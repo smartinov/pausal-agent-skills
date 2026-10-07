@@ -4,6 +4,7 @@ Verzije su CalVer `YYYY.M.N`. Svaka izmena propisa navodi ID-jeve redova koje di
 
 ## Neobjavljeno
 
+- 2026.10.5: The invoice email template lives in the workspace `AGENTS.md` (section „Mejl uz fakturu") instead of the never-shipped `Sabloni/mail-faktura-*.txt`. Existing workspaces move their text there.
 - 2026.10.4: Invoice with a currency clause (`placanje: "RSD"`): price in EUR, payment in RSD to the dinar account at the NBS middle rate. `init` also creates `Registracija/`.
 - 2026.10.3: Add Claude directory listing metadata (display name, homepage, documentation, support, privacy, terms, repository, keywords) and a privacy section on the site.
 - 2026.10.2: Detect Codex plugin folders by directory in `init` so the manifest icon is not traced as script-reachable by plugin validation.

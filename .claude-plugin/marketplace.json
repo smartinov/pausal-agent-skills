@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Agent skills za vođenje paušalne agencije u Srbiji: fakture, KPO, limiti, obaveze, klijenti i naplata, uz proverene propise sa izvorima.",
-    "version": "2026.10.4"
+    "version": "2026.10.5"
   },
   "plugins": [
     {
@@ -14,7 +14,7 @@
       "description": "Back office paušalca: fakture, KPO knjiga, limiti, obaveze, test samostalnosti i naplata, uz propise sa izvorima.",
       "source": "./plugins/pausal",
       "category": "productivity",
-      "version": "2026.10.4",
+      "version": "2026.10.5",
       "keywords": ["pausal", "srbija", "preduzetnik", "faktura", "kpo", "porez"]
     }
   ]

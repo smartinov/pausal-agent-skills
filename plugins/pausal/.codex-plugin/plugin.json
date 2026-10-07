@@ -1,6 +1,6 @@
 {
   "name": "pausal",
-  "version": "2026.10.4",
+  "version": "2026.10.5",
   "description": "Back office paušalca: fakture, KPO knjiga, limiti, obaveze, test samostalnosti i naplata, uz propise sa izvorima.",
   "author": {
     "name": "Stefan Martinov",
