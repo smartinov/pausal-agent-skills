@@ -1,6 +1,6 @@
 ---
 name: obaveze
-description: 'Rokovi i obaveze paušalca: mesečni porez i doprinosi, godišnje obaveze, PPDG-1R, podsetnici i .ics kalendar, prenos sredstava na lični račun i šifre plaćanja. Koristiti za „šta treba da platim", „rokovi", „kalendar obaveza", „koliko smem da prebacim sebi", „šifra plaćanja".'
+description: 'Rokovi i obaveze paušalca: mesečni porez i doprinosi, godišnje obaveze, PPDG-1R, podsetnici i .ics kalendar, prenos sredstava na lični račun i šifre plaćanja. Koristiti za „šta treba da platim", „rokovi", „kalendar obaveza", „koliko smem da prebacim sebi", „šifra plaćanja", „da li je porez plaćen", „upit stanja".'
 ---
 
 # Obaveze
@@ -17,6 +17,10 @@ Objasni sastav uz izvor za status korisnika:
 - doprinosi: `propis:doprinos.pio`, `propis:doprinos.zdravstvo`, `propis:doprinos.nezaposlenost`. Za status `zaposlen` redovi o zdravstvu i nezaposlenosti mogu biti NEPROVERENO; tako i reci.
 
 Rok je u `propis:obaveze.rok-mesecni`. Da li se rok pomera kad pada na neradni dan: `propis:obaveze.neradni-dan`.
+
+## Da li je plaćeno
+
+Stanje se proverava u konsolidovanom upitu stanja na ePorezima (sačuvan PDF ili snimak ekrana od korisnika). Kako se čita negativan osnovni dug i od kog dana u mesecu je stanje merodavno: `propis:obaveze.upit-stanja`. Upit pre tog dana ne dokazuje ni dug ni uplatu unapred za tekući mesec; reci korisniku od kog dana da ponovi proveru. Uplatu potvrđuje i izvod računa sa kog je plaćeno.
 
 ## Kalendar i podsetnici
 
